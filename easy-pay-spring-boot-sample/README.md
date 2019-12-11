@@ -3,7 +3,7 @@
 > 这是一个Easy-Pay与springboot框架来实现支付宝和微信支付的使用Demo
 
 
-<img width="850" height="500" src="https://github.com/easy-pay/spring-boot-easy-pay/blob/master/docs/demo.png"/>
+<img width="850" height="390" src="https://github.com/easy-pay/spring-boot-easy-pay/blob/master/docs/demo.png"/>
 
 #### 事先准备
 
