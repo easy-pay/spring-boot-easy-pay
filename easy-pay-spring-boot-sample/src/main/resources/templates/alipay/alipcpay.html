@@ -67,7 +67,7 @@
         var price = $("#price").val();
         var descript = $("#descript").val();
 
-        window.location.href="http://127.0.0.1:9999/alipay/pcpay?totalAmount="+price+"&subject="+title+"&outTradeNo="+oriderId+"&body="+descript;
+        window.parent.location.href="http://127.0.0.1:9999/alipay/pcpay?totalAmount="+price+"&subject="+title+"&outTradeNo="+oriderId+"&body="+descript;
     }
 </script>
 </body>

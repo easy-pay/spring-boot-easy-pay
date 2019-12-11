@@ -113,6 +113,8 @@
                     var before = "http://qr.liantu.com/api.php?&w=350&text=";
                     before+=data.qr_code;
                     $("#qrcode").attr('src',before);
+                }else {
+                    alert(data.msg);
                 }
             }
 

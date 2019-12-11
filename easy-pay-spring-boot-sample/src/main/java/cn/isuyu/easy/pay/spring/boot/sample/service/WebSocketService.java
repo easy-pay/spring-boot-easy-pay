@@ -27,7 +27,7 @@ public class WebSocketService {
      *
      * 用线程安全的CopyOnWriteArraySet来存放客户端连接的信息
      */
-    private static CopyOnWriteArraySet<Client> socketServers = new CopyOnWriteArraySet<>();
+    private static CopyOnWriteArraySet<Client> socketServers = new CopyOnWriteArraySet<Client>();
 
     /**
      *
