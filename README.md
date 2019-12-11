@@ -1,8 +1,10 @@
-## Easy-Pay
+# Easy-Pay
+
+## [点击跳转到框架通用版本](https://github.com/easy-pay/spring-boot-easy-pay)
 
 <img src="https://github.com/easy-pay/easy-pay/blob/master/doc/logo.jpg" width="700" height="150" alt="logo"/>
 
-#### 使用前配置
+### 使用前配置
 
 - 在项目`pom.xml`文件中引入`Easy-Pay`的依赖，该依赖已经发布到了maven的中央仓库。
 
@@ -45,10 +47,15 @@ easy:
       certName: wx_pay_cert.p12
 
 ```
+### 文档
+
 - [SpringBoot使用Easy-Pay Demo](https://github.com/easy-pay/spring-boot-easy-pay/tree/master/easy-pay-spring-boot-sample)
 
 - [支付宝支付使用文档](https://github.com/easy-pay/spring-boot-easy-pay/tree/master/docs/alipay.md)
 
+- [微信支付使用文档](https://github.com/easy-pay/spring-boot-easy-pay/tree/master/docs/wxpay.md)
+
+### 其它
 - [微信支付使用文档](https://github.com/easy-pay/spring-boot-easy-pay/tree/master/docs/wxpay.md)
 
  有问题可以`微信`我
