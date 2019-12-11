@@ -2,16 +2,6 @@
 
 <img src="https://github.com/easy-pay/easy-pay/blob/master/doc/logo.jpg" width="700" height="150" alt="logo"/>
 
-
-### 注意事项
-
-- 如果只想使用支付宝或微信`其中一方`支付方式，配置文件只需要配置微信或支付宝的配置无需两个支付方式都配置
-
-
-### 各种框架使用Easy-Pay的Demo
-
-- [SpringBoot使用Easy-Pay的Demo](https://github.com/easy-pay/spring-boot-easy-pay/tree/master/easy-pay-spring-boot-sample)
-
 ![演示gif](https://github.com/easy-pay/spring-boot-easy-pay-demo/blob/master/src/main/resources/demo.png)
 
 
@@ -58,6 +48,7 @@ easy:
       certName: wx_pay_cert.p12
 
 ```
+- [SpringBoot使用Easy-Pay Demo](https://github.com/easy-pay/spring-boot-easy-pay/tree/master/easy-pay-spring-boot-sample)
 
 - [支付宝支付使用文档](https://github.com/easy-pay/spring-boot-easy-pay/tree/master/docs/alipay.md)
 
