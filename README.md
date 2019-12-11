@@ -1,11 +1,8 @@
-### Easy-Pay
+## Easy-Pay
 
 <img src="https://github.com/easy-pay/easy-pay/blob/master/doc/logo.jpg" width="700" height="150" alt="logo"/>
 
-![演示gif](https://github.com/easy-pay/spring-boot-easy-pay-demo/blob/master/src/main/resources/demo.png)
-
-
-#### 使用前配置文件配置如下
+#### 使用前配置
 
 - 在项目`pom.xml`文件中引入`Easy-Pay`的依赖，该依赖已经发布到了maven的中央仓库。
 
