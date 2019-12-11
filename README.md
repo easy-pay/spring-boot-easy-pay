@@ -12,7 +12,7 @@
 <dependency>
     <groupId>cn.isuyu.boot</groupId>
     <artifactId>easy-pay-spring-boot-starter</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.0.RELEASE</version>
 </dependency>
 ```
 #### 配置文件
