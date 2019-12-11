@@ -1,4 +1,4 @@
-### 支付宝支付调用文档(sdk version:3.7.26.ALL)
+### 支付宝支付调用文档(sdk version:4.8.73.ALL)
 
 - [支付宝二维码生成方法](https://github.com/easy-pay/easy-pay/blob/master/doc/alipay.md#%E4%BA%8C%E7%BB%B4%E7%A0%81%E7%94%9F%E6%88%90)
 
@@ -13,6 +13,14 @@
 - [支付宝退款方法](https://github.com/easy-pay/easy-pay/blob/master/doc/alipay.md#%E9%80%80%E6%AC%BE)
 
 - [支付宝退款查询方法](https://github.com/easy-pay/easy-pay/blob/master/doc/alipay.md#%E9%80%80%E6%AC%BE%E6%9F%A5%E8%AF%A2)
+
+### 使用
+
+```java
+    @Autowired
+    private AlipayService alipayService;
+
+```
 
 #### 二维码生成
 
@@ -41,7 +49,7 @@
 ```
 ##### 浏览器访问示例
 ```html
-127.0.0.1:9999/qrcode?totalAmount=0.01&subject=测试二维码支付&outTradeNo=999999999
+127.0.0.1:9999/alipay/qrcode?totalAmount=0.01&subject=测试二维码支付&outTradeNo=999999999
 ```
 
 ##### Easy-Pay支付宝二维码响应参数
@@ -96,7 +104,7 @@
 ```
 ##### 浏览器访问示例
 ```html
-127.0.0.1:9999/h5pay?totalAmount=0.01&subject=测试二维码支付&outTradeNo=999999999&quitUrl=www.test.com
+127.0.0.1:9999/alipay/h5pay?totalAmount=0.01&subject=测试二维码支付&outTradeNo=999999999&quitUrl=www.test.com
 ```
 
 ##### Easy-Pay支付宝H5支付响应示例
@@ -201,7 +209,7 @@
 
 ##### 浏览器访问示例
 ```html
-127.0.0.1:9999/closeorder?outTradeNo=123456&operatorId=admin
+127.0.0.1:9999/alipay/closeorder?outTradeNo=123456&operatorId=admin
 ```
 ***
 
@@ -227,11 +235,11 @@
         log.info(aliPayCallBackVO.getOut_trade_no() + "-----" + aliPayCallBackVO.getTrade_status());
 
         //支付成功通过websocket将回调结果返回给前端，我们生产环境需要判断是否回调结果状态并改变数据库中订单的值
-        if(aliPayCallBackVO.getTrade_status().equals(SUCCESS_PAY_STATUS)) {
+        if(aliPayCallBackVO.getTrade_status().equals("TRADE_SUCCESS")) {
             WebSocketService.sendMessage(JSON.toJSONString(aliPayCallBackVO),aliPayCallBackVO.getOut_trade_no());
 
         }
-        //返回给支付宝回调的接口已经封装好了，不管成功时候都是返回SUCCESS
+        //返回给支付宝回调的接口已经封装好了，不管是否成功都返回SUCCESS
         return aliPayCallBackVO.getShouldResonse();
     }
 ```
@@ -296,7 +304,7 @@
 ```
 ##### 浏览器访问示例
 ```html
-127.0.0.1:9999/refund?refundAmount=0.01&refundReason=测试退款&outTradeNo=999999999
+127.0.0.1:9999/alipay/refund?refundAmount=0.01&refundReason=测试退款&outTradeNo=999999999
 ```
 
 ##### Easy-Pay响应参数
@@ -358,7 +366,7 @@
 
 ##### 浏览器访问示例
 ```html
-127.0.0.1:9999/refundQuery?outTradeNo=88888
+127.0.0.1:9999/alipay/refundQuery?outTradeNo=88888
 ```
 
 ##### Easy-Pay响应参数

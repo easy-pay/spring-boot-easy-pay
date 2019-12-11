@@ -5,6 +5,7 @@ import cn.isuyu.easy.pay.spring.boot.autoconfigure.dto.WxpayQrcodeDTO;
 import cn.isuyu.easy.pay.spring.boot.autoconfigure.dto.WxpayRefundDTO;
 import cn.isuyu.easy.pay.spring.boot.autoconfigure.dto.WxpayRefundQueryDTO;
 import cn.isuyu.easy.pay.spring.boot.autoconfigure.service.WxPayService;
+import cn.isuyu.easy.pay.spring.boot.autoconfigure.utils.IpUtils;
 import cn.isuyu.easy.pay.spring.boot.autoconfigure.vos.*;
 import cn.isuyu.easy.pay.spring.boot.sample.service.WebSocketService;
 import com.alibaba.fastjson.JSON;
@@ -12,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @Author NieZhiLiang
@@ -26,6 +29,9 @@ public class WxpayController {
     @Autowired
     private WxPayService wxPayService;
 
+    @Autowired
+    private HttpServletRequest request;
+
     /**
      * 微信二维码支付
      * @param qrcodeDTO
@@ -35,6 +41,17 @@ public class WxpayController {
     public WxpayQrcodeVO wxQrcode(WxpayQrcodeDTO qrcodeDTO) throws Exception {
 
         return wxPayService.qrcode(qrcodeDTO);
+    }
+
+    /**
+     * h5支付
+     * @param wxQrcodeDTO
+     * @return
+     * @throws Exception
+     */
+    public WxpayH5CreateOrderVO h5pay(WxpayQrcodeDTO wxQrcodeDTO) throws Exception {
+        wxQrcodeDTO.setSpbillCreateIp(IpUtils.getIpAddress(request));
+        return wxPayService.h5Pay(wxQrcodeDTO);
     }
 
     /**
