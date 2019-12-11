@@ -4,8 +4,7 @@
 
 ### 使用前配置
 
-- 该jar springboot版本为2.0.2.RELEASE 如果想使用其它版本可以自行修改最外层`pom.xml` properties中的spring-boot.version版本就好  再发布到
-私服上。
+- 该jar springboot版本为2.0.2.RELEASE 如果想使用其它版本可以自行修改最外层`pom.xml` `properties`中的`spring-boot.version`版本就好  再发布到`maven私服`上。
 
 - 在项目`pom.xml`文件中引入`Easy-Pay`的依赖，该依赖已经发布到了maven的中央仓库。
 
