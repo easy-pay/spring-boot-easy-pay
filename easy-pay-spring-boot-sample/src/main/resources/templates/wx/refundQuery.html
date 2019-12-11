@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Easy-Pay</title>
+    <link rel="stylesheet" th:href="@{../layui/css/layui.css}" media="all" />
+    <script th:src="@{../layui/layui.js}"></script>
+    <script th:src="@{../jquery.min.js}"></script>
+    <style>
+        span {
+            word-break: normal;
+            width: auto;
+            display: block;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow: hidden;
+        }
+        b {
+            color: yellowgreen;
+        }
+    </style>
+</head>
+<body class="layui-layout-body">
+<div style="padding: 15px;">
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>微信退款查询</legend>
+    </fieldset>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">商户订单号</label>
+        <div class="layui-input-block">
+            <input type="text" id="oriderId" lay-verify="title" autocomplete="off" placeholder="请输入要查询的商户订单号" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <button class="layui-btn layui-btn-normal" onclick="refund()">查询订单</button>
+    </div>
+
+    <div style="text-align: center;margin-top: 30px">
+
+        <div id="successui" style="display: none">
+            <div>
+                <img th:src="@{../success.jpeg}" width="50px" height="50px">
+                <span style="color: yellowgreen;font-size: 16px">退款详情如下</span>
+            </div>
+            <span style="color: #C2BE9E">商家订单编号：<b id="ownid"></b></span>
+            <span style="color: #C2BE9E">退款金额：<b id="money"></b></span>
+            <span style="color: #C2BE9E">退款次数：<b id="count"></b></span>
+        </div>
+    </div>
+</div>
+</body>
+
+<script>
+    function refund() {
+
+        $('#successui').hide();
+
+        var oriderId = $("#oriderId").val();
+        if (oriderId == null || oriderId == '') {
+            alert('商户单号不能为空');
+            return
+        }
+
+        //请求后端微信关闭订单的方法
+        $.ajax({
+            url: "wx/refundQuery?outTradeNo="+oriderId,
+            type: 'GET',
+            dataType: 'text',
+            success: function(data){
+                data = JSON.parse(data);
+                console.log(data)
+                if(data.resultCode == 'SUCCESS') {
+
+                    $('#ownid').text(data.outTradeNo)
+                    $('#money').text(data.refundFee)
+                    $('#count').text(data.refundCount)
+
+                    $('#successui').show();
+
+                } else {
+                    //打印出微信返回错误信息
+                    alert(data.errCodeDes)
+                }
+            }
+
+        })
+    }
+</script>
+
+</html>

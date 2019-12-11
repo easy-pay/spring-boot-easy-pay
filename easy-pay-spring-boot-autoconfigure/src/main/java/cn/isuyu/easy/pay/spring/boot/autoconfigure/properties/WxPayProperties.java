@@ -15,7 +15,7 @@ import javax.annotation.PostConstruct;
 @ConfigurationProperties(prefix = WxPayProperties.WECHAT_PROPERTIES_PREFIX)
 public class WxPayProperties {
 
-    public static final String WECHAT_PROPERTIES_PREFIX = "easy.pay.weixin";
+    public static final String WECHAT_PROPERTIES_PREFIX = "easy.pay.wxpay";
 
     private String appId;
 

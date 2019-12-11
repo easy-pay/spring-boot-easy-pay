@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Easy-Pay</title>
+    <link rel="stylesheet" th:href="@{../layui/css/layui.css}" media="all" />
+    <script th:src="@{../layui/layui.js}"></script>
+    <script th:src="@{../jquery.min.js}"></script>
+    <style>
+        span {
+            word-break: normal;
+            width: auto;
+            display: block;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow: hidden;
+        }
+        b {
+            color: yellowgreen;
+        }
+    </style>
+</head>
+<body class="layui-layout-body">
+    <div style="padding: 15px;">
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+            <legend>支付宝二维码支付</legend>
+        </fieldset>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">商户订单号</label>
+            <div class="layui-input-block">
+                <input type="text" id="oriderId" lay-verify="title" autocomplete="off" placeholder="请输入商户订单号(不填自动生成)" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">订单标题</label>
+            <div class="layui-input-block">
+                <input type="text" id="title" placeholder="请输入订单标题" autocomplete="off" class="layui-input" value="支付宝二维码支付测试" disabled>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">订单金额</label>
+            <div class="layui-input-block">
+                <input type="text" id="price" placeholder="请输入订单金额" autocomplete="off" class="layui-input" value="0.01" disabled>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <button class="layui-btn layui-btn-normal" onclick="getValue()">生成二维码</button>
+        </div>
+
+        <div style="text-align: center;margin-top: 30px">
+
+            <div id="payui">
+                <img  id ="qrcode" src="https://avatars2.githubusercontent.com/u/33079130?s=460&v=4"/>
+            </div>
+
+            <div id="successui" style="display: none">
+                <div>
+                    <img th:src="@{../success.jpeg}" width="50px" height="50px">
+                    <span style="color: yellowgreen;font-size: 16px">订单支付成功</span>
+                </div>
+                <span style="color: #C2BE9E">支付宝订单号：<b id="alino"></b></span>
+                <span style="color: #C2BE9E">商户订单编号：<b id="ownid"></b></span>
+                <span style="color: #C2BE9E">支付金额：<b id="money"></b></span>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+
+    function getValue() {
+
+        $('#successui').hide();
+        $('#payui').show();
+
+        var oriderId = $("#oriderId").val();
+        var title = $("#title").val();
+        var price = $("#price").val();
+
+        if(oriderId == null || oriderId == "") {
+            oriderId = (new Date()).getTime();
+            $("#oriderId").val(oriderId)
+        }
+
+        //这里测试的时候无需修改，该项目我放到了线上，你支付成功就会返回websocket信息给你
+        if ('WebSocket' in window){
+            ws = new WebSocket("ws://127.0.0.1:9999/easypay/"+oriderId)
+        }
+        else if ('MozWebSocket' in window){
+            ws = new MozWebSocket("ws://127.0.0.1:9999/easypay/"+oriderId)
+        }
+        else{
+            alert("该浏览器不支持websocket");
+        }
+        //连接websocket
+        ws.onopen = function(evt) {
+            console.log("%swebsocket连接成功",oriderId)
+        };
+
+        //请求后端生成二维码接口
+        $.ajax({
+            url: "alipay/qrcode?totalAmount="+price+"&subject="+title+"&outTradeNo="+oriderId,
+            type: 'GET',
+            dataType: 'text',
+            success: function(data){
+                data = JSON.parse(data);
+                if(data.code == 10000) {
+                    var before = "http://qr.liantu.com/api.php?&w=350&text=";
+                    before+=data.qr_code;
+                    $("#qrcode").attr('src',before);
+                }
+            }
+
+        })
+
+        ws.onmessage = function(evt) {
+            console.log(evt.data)
+            var payResult = JSON.parse(evt.data);
+            //表示支付成功，则将二维码页面替换成支付成功的图
+            if (payResult.trade_status == 'TRADE_SUCCESS') {
+                $('#alino').text(payResult.trade_no)
+                $('#ownid').text(payResult.out_trade_no)
+                $('#money').text(payResult.total_amount)
+                $('#payui').hide();
+                $('#successui').show();
+                $("#oriderId").val('');
+            }
+        };
+    }
+</script>
+</html>

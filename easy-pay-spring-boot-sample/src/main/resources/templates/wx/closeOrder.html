@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Easy-Pay</title>
+    <link rel="stylesheet" th:href="@{../layui/css/layui.css}" media="all" />
+    <script th:src="@{../layui/layui.js}"></script>
+    <script th:src="@{../jquery.min.js}"></script>
+    <style>
+        span {
+            word-break: normal;
+            width: auto;
+            display: block;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow: hidden;
+        }
+        b {
+            color: yellowgreen;
+        }
+    </style>
+</head>
+<body class="layui-layout-body">
+<div style="padding: 15px;">
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>微信退款查询</legend>
+    </fieldset>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">商户订单号</label>
+        <div class="layui-input-block">
+            <input type="text" id="oriderId" lay-verify="title" autocomplete="off" placeholder="请输入要关闭的商户订单号" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <button class="layui-btn layui-btn-normal" onclick="refund()">关闭订单</button>
+    </div>
+
+    <div style="text-align: center;margin-top: 30px">
+
+        <div id="successui" style="display: none">
+            <div>
+                <img th:src="@{../success.jpeg}" width="50px" height="50px">
+                <span style="color: yellowgreen;font-size: 16px">订单关闭成功</span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script>
+    function refund() {
+
+        $('#successui').hide();
+
+        var oriderId = $("#oriderId").val();
+        if (oriderId == null || oriderId == '') {
+            alert('商户单号不能为空');
+            return
+        }
+
+        //请求后端微信关闭订单的方法
+        $.ajax({
+            url: "wx/closeOrder?outTradeNo="+oriderId,
+            type: 'GET',
+            dataType: 'text',
+            success: function(data){
+                data = JSON.parse(data);
+                console.log(data)
+                if(data.resultCode == 'SUCCESS') {
+
+                    $('#successui').show();
+
+                } else {
+                    //打印出微信返回错误信息
+                    alert(data.errCodeDes)
+                }
+            }
+
+        })
+    }
+</script>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Easy-Pay</title>
+    <link rel="stylesheet" th:href="@{../layui/css/layui.css}" media="all" />
+    <script th:src="@{../layui/layui.js}"></script>
+    <script th:src="@{../jquery.min.js}"></script>
+</head>
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo">Easy Pay</div>
+        </div>
+
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a class="" href="javascript:;" onclick="alipay(0)">支付宝</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;" onclick="alipay(0)">二维码支付</a></dd>
+                            <dd><a href="javascript:;" onclick="alipay(1)">PC端支付</a></dd>
+                            <dd><a href="javascript:;" onclick="alipay(2)">退款</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="javascript:;" onclick="wxpay(0)">微信</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;" onclick="wxpay(0)">二维码支付</a></dd>
+                            <dd><a href="javascript:;"  onclick="wxpay(1)">关闭订单</a></dd>
+                            <dd><a href="javascript:;"  onclick="wxpay(2)">退款</a></dd>
+                            <dd><a href="javascript:;"  onclick="wxpay(3)">退款查询</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="layui-body">
+            <iframe  id="myiframe" src="https://www.baidu.com/" frameborder="0" height="100%" width="100%"></iframe>
+        </div>
+
+        <div class="layui-footer" style="text-align: center">
+            <!-- 底部固定区域 -->
+            © layui.com - 底部固定区域
+        </div>
+    </div>
+</body>
+</html>
+
+
+<script>
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+    var iframe = $("#myiframe");
+    var url = "aliqrcode";
+
+    function alipay(type) {
+        if (type == 0) {
+            url = "aliqrcode"
+        } else if (type == 1) {
+            url = "alipcpay"
+        } else if (type == 2) {
+            url = "alirefund";
+        }
+
+        iframe.attr("src",url)
+    }
+
+    function wxpay(type) {
+        if (type == 0) {
+            url = "wxqrcode"
+        } else if (type == 1) {
+            url = "wxcloseorder"
+        } else if (type == 2) {
+            url = "wxrefund";
+        } else if (type == 3) {
+            url = "wxrefundquery";
+        }
+
+        iframe.attr("src",url)
+    }
+</script>
+</html>

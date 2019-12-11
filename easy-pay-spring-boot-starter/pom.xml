@@ -15,7 +15,7 @@
 
     <name>oss-spring-boot-starter</name>
     <url>http://maven.apache.org</url>
-    <description> aliyun oss operater </description>
+    <description> alipay  wechat  some pay strategy</description>
 
 
     <developers>
@@ -108,13 +108,13 @@
             <name>GNU General Public License v3.0</name>
             <url>http://www.gnu.org/licenses/agpl-3.0.html</url>
             <distribution>repo</distribution>
-            <comments>alinyun oss operater</comments>
+            <comments>alipay  wechat  some pay strategy</comments>
         </license>
     </licenses>
     <scm>
-        <connection>scm:git://https://github.com/niezhiliang/alioss-spring-boot.git</connection>
-        <developerConnection>scm:git:https://github.com/niezhiliang/alioss-spring-boot.git</developerConnection>
-        <url>https://github.com/niezhiliang/alioss-spring-boot</url>
+        <connection>scm:git://https://github.com/easy-pay/spring-boot-easy-pay.git</connection>
+        <developerConnection>scm:git:https://github.com/easy-pay/spring-boot-easy-pay.git</developerConnection>
+        <url>https://github.com/easy-pay/spring-boot-easy-pay</url>
         <tag>v${project.version}</tag>
     </scm>
 
