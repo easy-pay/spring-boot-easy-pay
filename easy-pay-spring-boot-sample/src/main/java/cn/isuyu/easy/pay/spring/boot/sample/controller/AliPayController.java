@@ -1,14 +1,8 @@
 package cn.isuyu.easy.pay.spring.boot.sample.controller;
 
-import cn.isuyu.easy.pay.spring.boot.autoconfigure.dto.AlipayPcPayDTO;
-import cn.isuyu.easy.pay.spring.boot.autoconfigure.dto.AlipayQrcodeDTO;
-import cn.isuyu.easy.pay.spring.boot.autoconfigure.dto.AlipayRefundDTO;
-import cn.isuyu.easy.pay.spring.boot.autoconfigure.dto.AlipayRefundQueryDTO;
+import cn.isuyu.easy.pay.spring.boot.autoconfigure.dto.*;
 import cn.isuyu.easy.pay.spring.boot.autoconfigure.service.AlipayService;
-import cn.isuyu.easy.pay.spring.boot.autoconfigure.vos.AlipayCallBackVO;
-import cn.isuyu.easy.pay.spring.boot.autoconfigure.vos.AlipayQrcodeVO;
-import cn.isuyu.easy.pay.spring.boot.autoconfigure.vos.AlipayRefundQueryVO;
-import cn.isuyu.easy.pay.spring.boot.autoconfigure.vos.AlipayRefundVO;
+import cn.isuyu.easy.pay.spring.boot.autoconfigure.vos.*;
 import cn.isuyu.easy.pay.spring.boot.sample.service.WebSocketService;
 import com.alibaba.fastjson.JSON;
 import com.alipay.api.AlipayApiException;
@@ -55,6 +49,31 @@ public class AliPayController {
     @RequestMapping(value = "pcpay")
     public String pcPay(AlipayPcPayDTO pcPayDTO) throws AlipayApiException {
         return alipayService.pcPay(pcPayDTO);
+    }
+
+    /**
+     * h5支付
+     * @param aliPayH5PayDTO
+     * @return
+     * @throws AlipayApiException
+     */
+    @RequestMapping(value = "h5pay")
+    public String h5pay(AliPayH5PayDTO aliPayH5PayDTO) throws AlipayApiException {
+
+        return alipayService.h5pay(aliPayH5PayDTO);
+    }
+
+
+    /**
+     * 订单关闭
+     * @param alipayCloseOrderDTO
+     * @return
+     * @throws AlipayApiException
+     */
+    @RequestMapping(value = "close")
+    public AlipayCloseOrderVO close(AlipayCloseOrderDTO alipayCloseOrderDTO) throws AlipayApiException {
+
+        return alipayService.closeOrder(alipayCloseOrderDTO);
     }
 
     /**
