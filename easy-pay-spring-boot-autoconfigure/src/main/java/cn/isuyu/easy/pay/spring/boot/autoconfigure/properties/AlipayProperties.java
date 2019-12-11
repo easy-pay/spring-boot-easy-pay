@@ -4,8 +4,6 @@ import lombok.Data;
 import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import javax.annotation.PostConstruct;
-
 /**
  * @Author NieZhiLiang
  * @Email nzlsgg@163.com
@@ -19,14 +17,19 @@ public class AlipayProperties {
 
     public static final String ALIPAY_PROPERTIES_PREFIX = "easy.pay.alipay";
 
+    /** 应用ID **/
     private String appId;
 
+    /** 商户私钥 **/
     private String privateKey;
 
+    /** 支付宝公钥 **/
     private String publicKey;
 
+    /** 异步回调地址 **/
     private String notifyUrl;
 
+    /** 同步回调页面 **/
     private String returnUrl;
 
     private String signType = "RSA2";
@@ -37,9 +40,9 @@ public class AlipayProperties {
 
     private String logPath = "/tmp/";
 
-    @PostConstruct
-    public void chkParams() {
-        System.out.println("支付宝参数校验");
-    }
+//    @PostConstruct
+//    public void chkParams() {
+//        ChkParamsUtils.requireNonNull(this,"appId,privateKey,publicKey,returnUrl","alipay");
+//    }
 
 }
