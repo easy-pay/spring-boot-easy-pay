@@ -56,7 +56,6 @@ easy:
 - [微信支付使用文档](https://github.com/easy-pay/spring-boot-easy-pay/tree/master/docs/wxpay.md)
 
 ### 其它
-- [微信支付使用文档](https://github.com/easy-pay/spring-boot-easy-pay/tree/master/docs/wxpay.md)
 
  有问题可以`微信`我
 
