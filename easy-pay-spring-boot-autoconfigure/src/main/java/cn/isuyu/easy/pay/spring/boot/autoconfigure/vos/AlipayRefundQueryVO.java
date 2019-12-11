@@ -2,13 +2,15 @@ package cn.isuyu.easy.pay.spring.boot.autoconfigure.vos;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @Author NieZhiLiang
  * @Email nzlsgg@163.com
  * @Date 2019/5/11 下午2:31
  */
 @Data
-public class AlipayRefundQueryVO {
+public class AlipayRefundQueryVO implements Serializable {
 
     /**
      * 状态码

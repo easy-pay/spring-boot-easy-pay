@@ -1,8 +1,12 @@
 package cn.isuyu.easy.pay.spring.boot.autoconfigure.dto;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
 
 /**
  * @Author NieZhiLiang
@@ -11,8 +15,10 @@ import lombok.experimental.Accessors;
  * 生成二维码参数类
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Accessors(chain = true)
-public class AlipayQrcodeDTO {
+public class AlipayQrcodeDTO implements Serializable {
     /**
      * 订单金额
      */

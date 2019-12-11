@@ -2,6 +2,7 @@ package cn.isuyu.easy.pay.spring.boot.autoconfigure.vos;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Date;
  * 支付宝回调参数
  */
 @Data
-public class AlipayCallBackVO {
+public class AlipayCallBackVO implements Serializable {
 
     /**
      * 订单创建时间

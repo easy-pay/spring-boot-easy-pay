@@ -1,6 +1,11 @@
 package cn.isuyu.easy.pay.spring.boot.autoconfigure.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
+
+import java.io.Serializable;
 
 /**
  * @Author NieZhiLiang
@@ -9,7 +14,10 @@ import lombok.Data;
  * @Date 2019-08-26 11:16
  */
 @Data
-public class AliPayH5PayDTO {
+@AllArgsConstructor
+@NoArgsConstructor
+@Accessors(chain = true)
+public class AliPayH5PayDTO implements Serializable {
     /**
      * 交易的具体描述信息
      */

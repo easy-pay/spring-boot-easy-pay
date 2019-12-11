@@ -2,13 +2,15 @@ package cn.isuyu.easy.pay.spring.boot.autoconfigure.vos;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @Author NieZhiLiang
  * @Email nzlsgg@163.com
  * @Date 2019/5/7 下午2:37
  */
 @Data
-public class WxpayCallBackVO {
+public class WxpayCallBackVO implements Serializable {
 
     /**
      * 商户的订单号

@@ -4,8 +4,6 @@ import com.github.binarywang.wxpay.bean.result.BaseWxPayResult;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import lombok.Data;
 
-import java.io.Serializable;
-
 /**
  * @Author NieZhiLiang
  * @Email nzlsgg@163.com
@@ -13,7 +11,7 @@ import java.io.Serializable;
  */
 @Data
 @XStreamAlias("xml")
-public class WxpayRefundQueryVO extends BaseWxPayResult implements Serializable {
+public class WxpayRefundQueryVO extends BaseWxPayResult {
 
     /**
      * 商户订单号

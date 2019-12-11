@@ -1,7 +1,10 @@
 package cn.isuyu.easy.pay.spring.boot.autoconfigure.dto;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 /**
  * @Author NieZhiLiang
@@ -9,6 +12,9 @@ import lombok.Data;
  * @Date 2019/4/29 下午3:20
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Accessors(chain = true)
 public class WxpayBaseDTO {
 
     @XStreamAlias("appid")

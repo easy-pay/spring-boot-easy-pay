@@ -1,6 +1,11 @@
 package cn.isuyu.easy.pay.spring.boot.autoconfigure.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
+
+import java.io.Serializable;
 
 /**
  * @Author NieZhiLiang
@@ -9,7 +14,10 @@ import lombok.Data;
  * 退款的参数类
  */
 @Data
-public class AlipayRefundDTO {
+@AllArgsConstructor
+@NoArgsConstructor
+@Accessors(chain = true)
+public class AlipayRefundDTO implements Serializable {
 
     /**
      * 退款金额
