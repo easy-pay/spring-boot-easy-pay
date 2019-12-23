@@ -77,7 +77,9 @@ public class AliPayController {
     }
 
     /**
-     * 支付回调
+     * 支付回调 这里不管什么都全部返回SUCCESS
+     * 当状态为WAIT_BUYER_PAY 也会对调一次
+     * 如果不返回 支付宝会一直会回调
      * @param request
      */
     @RequestMapping(value = "callback")
@@ -86,7 +88,8 @@ public class AliPayController {
 
         log.info(aliPayCallBackVO.getOut_trade_no() + "-----" + aliPayCallBackVO.getTrade_status());
 
-        //支付成功通过websocket将回调结果返回给前端，我们生产环境需要判断是否回调结果状态并改变数据库中订单的值
+        //支付成功通过websocket将回调结果返回给前端，
+        // 我们生产环境需要判断是否回调结果状态并改变数据库中订单的值
         if(aliPayCallBackVO.getTrade_status().equals(SUCCESS_PAY_STATUS)) {
             WebSocketService.sendMessage(JSON.toJSONString(aliPayCallBackVO),aliPayCallBackVO.getOut_trade_no());
 

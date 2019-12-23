@@ -39,17 +39,6 @@ public class AlipayService {
     private final static String FAST_INSTANT_TRADE_PAY = "FAST_INSTANT_TRADE_PAY";
 
     /**
-     * 支付成功返回的状态值
-     */
-    private static final String SUCCESS_PAY_STATUS = "TRADE_SUCCESS";
-
-    /**
-     * 支付成功返给支付宝的值
-     */
-    private static final String SUCCESS = "SUCCESS";
-
-
-    /**
      * 获取支付二维码
      * @param alipayQrcodeDTO
      * @return
@@ -71,7 +60,9 @@ public class AlipayService {
     }
 
     /**
-     * 支付回调
+     * 支付回调 这里不管什么都全部返回SUCCESS
+     * 当状态为WAIT_BUYER_PAY 也会对调一次
+     * 如果不返回 支付宝会一直会回调
      * @return
      * @throws AlipayApiException
      */
@@ -86,10 +77,7 @@ public class AlipayService {
             throw new RuntimeException("alipay payment callback sign check failed");
         }
         AlipayCallBackVO  aliPayCallBackVO = JSON.parseObject(json,AlipayCallBackVO.class);
-        //判断订单的支付结果
-        if (SUCCESS_PAY_STATUS.equals(aliPayCallBackVO.getTrade_status())){
-            aliPayCallBackVO.setShouldResonse(SUCCESS);
-        }
+
         return aliPayCallBackVO;
     }
 

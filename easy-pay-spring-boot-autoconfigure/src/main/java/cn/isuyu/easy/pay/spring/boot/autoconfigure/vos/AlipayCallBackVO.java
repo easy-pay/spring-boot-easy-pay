@@ -72,6 +72,6 @@ public class AlipayCallBackVO implements Serializable {
     /**
      * 响应给支付宝的字符串
      */
-    private String shouldResonse = "FAILER";
+    private String shouldResonse = "SUCCESS";
 
 }

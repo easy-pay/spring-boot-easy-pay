@@ -11,9 +11,9 @@ easy:
       privateKey:
       publicKey:
       #服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-      notifyUrl: http://0b228e36.ngrok.io/alipay/callback
+      notifyUrl: http://f0e48dca.ngrok.io/alipay/callback
       #页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-      returnUrl: http://0b228e36.ngrok.io/
+      returnUrl: http://f0e48dca.ngrok.io
     #微信支付参数配置
     wxpay:
       #公众号appid
